@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Air Enthalpy Calculator & Visualizer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Air Enthalpy Calculator</h1>
+            <p>Calculate and visualize enthalpy using temperature and pressure inputs</p>
+            <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+        </div>
+
+        <div class="main-content">
+            <div class="input-section">
+                <h2>Input Parameters</h2>
+                <form id="enthalpyForm">
+                    <div class="form-group">
+                        <label for="temperature">Temperature (K)</label>
+                        <input type="number" id="temperature" step="0.1" min="0" placeholder="298.15">
+                        <div class="error-message" id="tempError">Please enter a valid temperature in Kelvin</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pressure">Pressure (Pa)</label>
+                        <input type="number" id="pressure" step="0.1" min="0" placeholder="101325">
+                        <div class="error-message" id="pressError">Please enter a valid pressure in Pascals</div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary">Calculate</button>
+                        <button type="button" class="btn btn-secondary" onclick="resetForm()">Reset</button>
+                    </div>
+                </form>
+
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="currentEnthalpy">-</div>
+                        <div class="stat-label">Current Enthalpy (kJ/kg)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="dataPoints">0</div>
+                        <div class="stat-label">Data Points</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="avgEnthalpy">-</div>
+                        <div class="stat-label">Average (kJ/kg)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-section">
+                <h2>Enthalpy Visualization</h2>
+                <div class="chart-container">
+                    <div class="no-data" id="noDataMessage">
+                        <div class="no-data-icon">📊</div>
+                        <div>No data yet. Enter values to start visualizing!</div>
+                    </div>
+                    <canvas id="enthalpyChart" style="display: none;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification" id="notification"></div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
